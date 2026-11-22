@@ -1,0 +1,138 @@
+{
+  "config_schema": [
+    {
+      "key": "intro",
+      "type": "section",
+      "options": []
+    },
+    {
+      "key": "privacy_info",
+      "type": "section",
+      "options": []
+    },
+    {
+      "key": "api_key",
+      "type": "secret",
+      "options": []
+    },
+    {
+      "key": "model",
+      "type": "select",
+      "options": [
+        "~anthropic/claude-haiku-latest",
+        "~anthropic/claude-sonnet-latest",
+        "~openai/gpt-terra-latest",
+        "~openai/gpt-luna-latest",
+        "~google/gemini-flash-latest",
+        "~deepseek/deepseek-flash-latest",
+        "openrouter/auto",
+        "openrouter/free",
+        "custom"
+      ]
+    },
+    {
+      "key": "fast_model",
+      "type": "select",
+      "options": [
+        "~openai/gpt-luna-latest",
+        "~anthropic/claude-haiku-latest",
+        "~deepseek/deepseek-flash-latest",
+        "openrouter/free",
+        "custom"
+      ]
+    },
+    {
+      "key": "custom_model",
+      "type": "string",
+      "options": []
+    },
+    {
+      "key": "reasoning",
+      "type": "select",
+      "options": ["none", "low", "medium", "high"]
+    },
+    {
+      "key": "max_tokens",
+      "type": "number",
+      "options": []
+    },
+    {
+      "key": "privacy",
+      "type": "select",
+      "options": ["standard", "no_training", "zdr"]
+    }
+  ],
+  "actions": ["test_connection"],
+  "widgets": [
+    {
+      "key": "usage",
+      "settings": []
+    }
+  ],
+  "scene_triggers": [
+    {
+      "key": "error",
+      "fields": [
+        {
+          "key": "kind",
+          "options": ["auth", "credits", "rate_limit", "model", "unreachable", "timeout", "server"]
+        }
+      ],
+      "variables": [
+        {
+          "key": "kind",
+          "type": "string"
+        },
+        {
+          "key": "message",
+          "type": "string"
+        },
+        {
+          "key": "use",
+          "type": "string"
+        },
+        {
+          "key": "model",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "key": "recovered",
+      "fields": [],
+      "variables": [
+        {
+          "key": "down_minutes",
+          "type": "number"
+        }
+      ]
+    }
+  ],
+  "scene_actions": [
+    {
+      "key": "web_search",
+      "fields": [
+        {
+          "key": "question",
+          "type": "string",
+          "required": true
+        },
+        {
+          "key": "instructions",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "key": "answer",
+          "type": "string"
+        },
+        {
+          "key": "sources",
+          "type": "string"
+        }
+      ]
+    }
+  ]
+}
